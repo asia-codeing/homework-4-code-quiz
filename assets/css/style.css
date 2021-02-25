@@ -1,0 +1,61 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  font-family: 'Courier New', Courier, monospace;
+}
+:root{
+    --color1:#c9edff;
+    --color2:#f7a78a;
+    --color3:#ffdada;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color3);
+}
+
+header{
+    width: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 20px;
+    font-weight: bold;
+}
+#score{
+   float: left;
+   padding: 10px;
+}
+#time{
+   float: right;
+   padding: 10px;
+}
+.container{
+    clear: both;
+    margin:0 auto;
+    text-align: center;
+    padding: 40px;
+    line-height: 30px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: large ;
+}
+#startBtn{
+    background-color: var(--color1);
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: larger ;
+    border-radius: 8px;
+    margin: 20px;
+}
+/*#submit{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}*/
+
+
+

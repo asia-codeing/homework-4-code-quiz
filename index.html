@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Code Quiz</title>
+    <link rel="stylesheet" href="./assets/css/style.css">
+</head>
+<body>
+ <header>
+       <!--Score save in the localstorage-->
+       <div id="score">View Highscores</div>
+       <!--Timer before start =0, after starting it will set to 100 and for each wrong answer it wil dectrese by 10 -->
+       <div id="time">Time: <span id="countdown">0</span></div>
+       <!--this contaner that will have all the qustions-->
+ </header>
+ <main>
+     <div class="container">
+         <!--starting page-->
+         <div class="startingPage">
+             <h1>Code Quiz Challenge</h1>
+             <p>Try to answer the following questions within the time limit. <br>Keep in minde thet icorect answers will decrease your time<br> by ten seconds. </p>
+             <!--Set the start button-->
+             <button id="startBtn">Start Quiz</button>
+          </div>
+          <!--question pages-->
+          <div id="questions-container">
+              <div id="question">Question?</div>
+              <div id="answer-buttons">
+                  <button class="btn-0"></button>
+                  <button class="btn-1"></button>
+                  <button class="btn-2"></button>
+                  <button class="btn-3"></button>
+              </div>
+          </div>
+          <!--submition page-->
+          <div id="submit">
+            <h1>All Done!</h1>
+            <!--we need  to get the total score-->
+            <div id="final-score">Your Final Score is: <span id="score-amount">0</span></div>
+            <form action="#" method="get">
+                <!--to entering initial and submit it-->
+                <input type="text" name="initial" placeholder="Enter Initials">
+                <input type="submit" value="SUBMIT" class="btn">
+            </form>
+          </div>
+          <div id="highscores">
+              <h1>Highscores</h1>
+              <div id="intial-score">
+                  <!--to view the initial and score-->
+                  <p id = "score-output">Intial and Score</p>
+                  <!--set button to go back to the first page-->
+                  <button class="goback-btn">Go Back</button>
+                  <!--set button to clear the Intial and Score output-->
+                  <button class="clear-btn">Clear Score</button>
+              </div>
+          </div>
+     </div>
+ </main>   
+ <script src="./assets/js/script.js"></script>
+</body>
+</html>
