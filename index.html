@@ -9,7 +9,7 @@
 <body>
  <header>
        <!--Score save in the localstorage-->
-       <div id="score">View Highscores</div>
+       <div id="score"><a href="#intial-score" >View Highscores</a></div>
        <!--Timer before start =0, after starting it will set to 100 and for each wrong answer it wil dectrese by 10 -->
        <div id="time">Time: <span id="countdown">0</span></div>
        <!--this contaner that will have all the qustions-->
@@ -26,19 +26,15 @@
           <!--question pages-->
           <div id="questions-container">
               <div id="question">Question?</div>
-              <div id="answer-buttons">
-                  <button class="btn-0"></button>
-                  <button class="btn-1"></button>
-                  <button class="btn-2"></button>
-                  <button class="btn-3"></button>
-              </div>
+               <div id="answer-buttons">
+               </div>   
           </div>
           <!--submition page-->
           <div id="submit">
             <h1>All Done!</h1>
             <!--we need  to get the total score-->
             <div id="final-score">Your Final Score is: <span id="score-amount">0</span></div>
-            <form action="#" method="get">
+            <form id = "initial-submit" method="get">
                 <!--to entering initial and submit it-->
                 <input type="text" name="initial" placeholder="Enter Initials">
                 <input type="submit" value="SUBMIT" class="btn">

@@ -50,12 +50,23 @@ header{
     border-radius: 8px;
     margin: 20px;
 }
-/*#submit{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-}*/
+#question{
+
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 22px ;
+}
+
+
+.aBtn{
+    background-color: var(--color1);
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16 ;
+    border-radius: 8px;
+    margin: 20px;
+}
 
 
 
