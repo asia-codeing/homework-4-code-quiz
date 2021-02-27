@@ -11,12 +11,13 @@ var timerCount;
 var index = 0;
 var currentQuestionIndex;
 var randomQuestions;
+var messg = document.querySelector("#messg")
 var questionEl = document.querySelector("#question");
 var answerBtnEl = document.querySelector("#answer-buttons");
 var highScore = document.querySelector("#score-amount");
 var score = 0;
 var initial;
-var inputInitial = document.querySelector("text");
+var inputInitial = document.querySelector("#text");
 var submitInitial = document.querySelector("#initial-submit")
 var submitBtn = document.querySelector(".btn");
 var goBack = document.querySelector(".goback-btn");
@@ -38,43 +39,43 @@ function startQuiz(){
 // this function to set the  questions
 function showQestion(){
     questionEl.innerHTML = randomQuestions.question;
-
+    answerBtnEl.innerHTML = "";
     for (var i = 0; i < randomQuestions.answers.length; i++) {
         console.log(randomQuestions.answers[i].text);
         var button = document.createElement("button");
         button.setAttribute("style", " background-color:#c9edff; padding: 20px;font-family: 'Courier New', Courier, monospace;font-weight: bold;font-size: 16;border-radius: 8px; margin:20px;");
-    
         button.textContent = randomQuestions.answers[i].text;
-        answerBtnEl.appendChild(button);
-        
-    }
-        answerBtnEl.addEventListener("click", function(){
-        if (randomQuestions.answers.correct = true){
+        button.setAttribute("value",randomQuestions.answers[i].correct);
+        button.setAttribute("class","answerBtn");
+        button.onclick =  function(){
+            console.log(this.value);
+        if (this.value === 'true'){
             score ++;
-            localStorage.setItem("score", JSON.stringify(score));
-           // localStorage.setItem("score", score);
+            //localStorage.setItem("score", JSON.stringify(score));
+            localStorage.setItem("score", score);
             alert('Correct!');
         }else{
-            timerCount - 5;
+            timerCount = timerCount - 5;
+            if (timerCount <= 0) {
+                clearInterval(timerCount);
+                allDone();
+              }
             alert('Wrong');
         }
-        setNextQuesion(1)
-    });
+        setNextQuesion()
+    }
+        answerBtnEl.appendChild(button);
+
+    }
     
 }
-function setNextQuesion(next) {
-       answerBtnEl.addEventListener("click", function(event) {
-       event.stopPropagation();
-        index = index + next;
-        if (index < 0) { 
-          index =  randomQuestions.answers.length ; 
-        } else if (index >  randomQuestions.answers.length ) { 
-          index = 0;
-        }
-        currentQuestionIndex = randomQuestions.answers[index];
-      
-      });      
- 
+function setNextQuesion() {
+    randomQuestions = questionsArr[Math.floor(Math.random() * questionsArr.length)];
+    console.log(randomQuestions);
+    showQestion()
+    if(randomQuestions === 0){
+        allDone();
+    }
 }
 
 var questionsArr = [
@@ -112,7 +113,7 @@ function startTimer() {
     timer = setInterval(function() {
       timerCount--;
       countdown.textContent = timerCount;
-      if (timerCount === 0) {
+      if (timerCount <= 0) {
         // Clears interval
         clearInterval(timer);
         allDone();
@@ -123,44 +124,31 @@ function startTimer() {
  function allDone(){
     document.querySelector("#submit").style.visibility = "visible";
     document.querySelector("#questions-container").style.visibility = "hidden";
-    var score = JSON.parse(localStorage.getItem("score"));
+    //var score = JSON.parse(localStorage.getItem("score"));
+    localStorage.getItem("score");
     highScore.textContent = score;
-    //localStorage.setItem("initial", JSON.stringify(initial));
-    storeInitial()
-
-    var scoreAndInitial ={
-        score : score.value,
-        initial : initial.value.trim()
+    if (inputInitial === "value"){
+    localStorage.setItem("initial",initial);
     }
-    localStorage.setItem("scoreAndInitial", JSON.stringify(scoreAndInitial));
-
+    //storeInitial()
   }
   //this function save the inital in the localstorage
-  function storeInitial() {
+  //function storeInitial() {
+   
     //event.preventDefault();
-    localStorage.setItem("initial", JSON.stringify(initial));
-  }
-  /*
-  submitBtn.addEventListener("submit", function(event) {
-    event.preventDefault();
-  
-    var initialText = inputInitial.value.trim();
-  
-    // Return from function early if submitted initialText is blank
-    if (initialText === "") {
-      return;
+   // localStorage.setItem("initial", JSON.stringify(initial));
+     /*var scoreAndInitial ={
+        score : score.value,
+        initial : inputInitial.value.trim()
     }
-    storeInitial()
-    document.querySelector("#submit").style.visibility = "hidden";
-    document.querySelector("#highscores").style.visibility = "visible";
-  });*/
-  
+    localStorage.setItem("scoreAndInitial", JSON.stringify(scoreAndInitial));*/
+  //}
   //Submition function for Initial
   submitBtn.addEventListener("click", function(event){
     event.preventDefault();
     document.querySelector("#submit").style.visibility = "hidden";
     document.querySelector("#highscores").style.visibility = "visible";
-    var sI = JSON.parse(localStorage.getItem("scoreAndInitial"));
+    var sI = localStorage.getItem("initial");
     initialScore.textContent = sI;
     });
 
