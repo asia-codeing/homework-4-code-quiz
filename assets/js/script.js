@@ -1,7 +1,7 @@
 //setting the other pages hidden by defualt
-document.querySelector("#questions-container").style.visibility = "hidden";
-document.querySelector("#submit").style.visibility = "hidden";
-document.querySelector("#highscores").style.visibility = "hidden";
+document.querySelector("#questions-container").style.display = "none";
+document.querySelector("#submit").style.display = "none";
+document.querySelector("#highscores").style.display = "none";
 //declare the start button
 var startButton = document.querySelector("#startBtn");
 //get the time id to set it in the timer function
@@ -11,6 +11,7 @@ var timerCount;
 var index = 0;
 var currentQuestionIndex;
 var randomQuestions;
+var qC = document.querySelector("#questions-container");
 var messg = document.querySelector("#messg")
 var questionEl = document.querySelector("#question");
 var answerBtnEl = document.querySelector("#answer-buttons");
@@ -28,8 +29,8 @@ var clear = document.querySelector(".clear-btn");
 startButton.addEventListener('click', startQuiz);
 function startQuiz(){
     console.log("Start");
-    document.querySelector(".startingPage").style.visibility = "hidden";
-    document.querySelector("#questions-container").style.visibility = "visible";
+    document.querySelector(".startingPage").style.display = "none";
+    document.querySelector("#questions-container").style.display = "block";
     randomQuestions = questionsArr[Math.floor(Math.random() * questionsArr.length)];
     timerCount = 20;
     startTimer()
@@ -43,7 +44,7 @@ function showQestion(){
     for (var i = 0; i < randomQuestions.answers.length; i++) {
         console.log(randomQuestions.answers[i].text);
         var button = document.createElement("button");
-        button.setAttribute("style", " background-color:#c9edff; padding: 20px;font-family: 'Courier New', Courier, monospace;font-weight: bold;font-size: 16;border-radius: 8px; margin:20px;");
+        button.setAttribute("style", " background-color:#9fedd7; padding: 20px;font-family: 'Courier New', Courier, monospace;font-weight: bold;font-size: 16;border-radius: 8px; margin:20px;");
         button.textContent = randomQuestions.answers[i].text;
         button.setAttribute("value",randomQuestions.answers[i].correct);
         button.setAttribute("class","answerBtn");
@@ -53,26 +54,35 @@ function showQestion(){
             score ++;
             //localStorage.setItem("score", JSON.stringify(score));
             localStorage.setItem("score", score);
-            alert('Correct!');
+            //alert('Correct!');
+            messg.innerHTML = 'Correct!';
+            console.log(messg.innerHTML);
+            setNextQuesion()
         }else{
             timerCount = timerCount - 5;
             if (timerCount <= 0) {
                 clearInterval(timerCount);
                 allDone();
               }
-            alert('Wrong');
+            //alert('Wrong');
+            messg.innerHTML = 'Wrong!';
+            setNextQuesion()
         }
-        setNextQuesion()
+        
     }
         answerBtnEl.appendChild(button);
+        //to get message for correct or wrong answer
+        qC.append(messg);
+
 
     }
     
 }
 function setNextQuesion() {
+   // messg.innerHTML = "";
     randomQuestions = questionsArr[Math.floor(Math.random() * questionsArr.length)];
     console.log(randomQuestions);
-    showQestion()
+    showQestion();
     if(randomQuestions === 0){
         allDone();
     }
@@ -106,6 +116,27 @@ var questionsArr = [
             {text: '64', correct: false}
         ]
     }
+    ,
+    {
+        question: 'what is 10 * 9?',
+        answers: [
+            {text: '81', correct: true},
+            {text: '100', correct: false},
+            {text: '49', correct: false},
+            {text: '64', correct: false}
+        ]
+    }
+    ,
+    {
+        question: 'what is 9 * 55?',
+        answers: [
+            {text: '81', correct: true},
+            {text: '100', correct: false},
+            {text: '49', correct: false},
+            {text: '64', correct: false}
+        ]
+    }
+    
 ]
 // The setTimer function starts and stops the timer and triggers winGame() and loseGame()
 function startTimer() {
@@ -122,12 +153,14 @@ function startTimer() {
   }
 
  function allDone(){
-    document.querySelector("#submit").style.visibility = "visible";
-    document.querySelector("#questions-container").style.visibility = "hidden";
+    document.querySelector("#submit").style.display = "block";
+    document.querySelector("#questions-container").style.display = "none";
+    countdown.textContent = 0;
     //var score = JSON.parse(localStorage.getItem("score"));
     localStorage.getItem("score");
     highScore.textContent = score;
-    if (inputInitial === "value"){
+
+    if (inputInitial){
     localStorage.setItem("initial",initial);
     }
     //storeInitial()
@@ -146,22 +179,20 @@ function startTimer() {
   //Submition function for Initial
   submitBtn.addEventListener("click", function(event){
     event.preventDefault();
-    document.querySelector("#submit").style.visibility = "hidden";
-    document.querySelector("#highscores").style.visibility = "visible";
+    console.log(event)
+    document.querySelector("#highscores").style.display = "block";
+    document.querySelector("#submit").style.display = "none";
     var sI = localStorage.getItem("initial");
     initialScore.textContent = sI;
     });
 
  //Go back button
  goBack.addEventListener("click", function(){
-     document.querySelector("#highscores").style.visibility = "hidden";
-     document.querySelector(".startingPage").style.visibility = "visible";
+     document.querySelector("#highscores").style.display = "none";
+     document.querySelector(".startingPage").style.display = "block";
+
  });
  //Clear button
  clear.addEventListener("click", function() {
      initialScore.textContent = '';
  })
-  
-
-
-

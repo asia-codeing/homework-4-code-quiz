@@ -5,9 +5,10 @@
   font-family: 'Courier New', Courier, monospace;
 }
 :root{
-    --color1:#c9edff;
-    --color2:#f7a78a;
-    --color3:#ffdada;
+    --color2:#fef9c7;
+    --color1:#9fedd7;
+    --color3:#EAE7DC;
+    --color4:#026670;
 }
 html,
 body {
@@ -15,6 +16,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: var(--color3);
+  color: var(--color4);
 }
 
 header{
@@ -22,6 +24,8 @@ header{
     font-family: 'Courier New', Courier, monospace;
     font-size: 20px;
     font-weight: bold;
+ 
+   
 }
 #score{
    float: left;
@@ -46,6 +50,8 @@ header{
 }
 #startBtn{
     background-color: var(--color1);
+    border-color: var(--color1);
+    color:  var(--color4);
     padding: 20px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
@@ -61,7 +67,34 @@ header{
 }
 
 
-.aBtn{
+.btn{
+    background-color: var(--color2);
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16 ;
+    border-radius: 8px;
+    margin: 20px;
+}
+#text{
+    background-color: var(--color1);
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16 ;
+    border-radius: 8px;
+    margin: 20px;
+}
+.goback-btn{
+    background-color: var(--color1);
+    padding: 20px;
+    font-family: 'Courier New', Courier, monospace;
+    font-weight: bold;
+    font-size: 16 ;
+    border-radius: 8px;
+    margin: 20px;
+}
+.clear-btn{
     background-color: var(--color1);
     padding: 20px;
     font-family: 'Courier New', Courier, monospace;
