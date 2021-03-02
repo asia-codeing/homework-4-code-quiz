@@ -39,12 +39,13 @@ function startQuiz(){
 // this function to set the  questions
 function showQestion(){
     questionEl.innerHTML = randomQuestions.question;
+   
     currentQuestionIndex = 0;
     answerBtnEl.innerHTML = "";
     for (var i = 0; i < randomQuestions.answers.length; i++) {
         console.log(randomQuestions.answers[i].text);
         var button = document.createElement("button");
-        button.setAttribute("style", " background-color:#9fedd7; padding: 20px;font-family: 'Courier New', Courier, monospace;font-weight: bold;font-size: 16;border-radius: 8px; margin:20px;");
+        button.setAttribute("style", " background-color:#9fedd7;color:#026670; padding: 20px;font-family: 'Courier New', Courier, monospace;font-weight: bold;font-size: 16;border-radius: 8px; border-color:#fef9c7; margin:20px;");
         button.textContent = randomQuestions.answers[i].text;
         button.setAttribute("value",randomQuestions.answers[i].correct);
         button.setAttribute("class","answerBtn");
@@ -73,27 +74,18 @@ function showQestion(){
         answerBtnEl.appendChild(button);
         //to get message for correct or wrong answer
         qC.append(messg);
-
+        randomIndexArray.push(randomQuestions);
 
     }
   
 }
 function setNextQuesion() {
-
-    for (let i = 0, temp = questionsArr; i < questionsArr.length; i++){
-        let rand = Math.floor(Math.random() * temp.length);
-        console.log(temp[rand]);
-        temp.splice(rand,1);
-    }
-
-
-
-    /*var randomIndex = Math.floor(Math.random() * questionsArr.length);
+   // randomQuestions = questionsArr[Math.floor(Math.random() * questionsArr.length)];
+    
+    var randomIndex = Math.floor(Math.random() * questionsArr.length);
     if (randomIndexArray.includes(randomIndex)){
        randomIndex = Math.floor(Math.random() * questionsArr.length);
-    }else{
-    randomIndex.push(randomIndexArray);
-  }*/
+    }
 
    /* function setNextQuesion(randomQuestions) {
         for (var i = randomQuestions - 1; i > 0; i--) {
@@ -119,11 +111,11 @@ function setNextQuesion() {
     }*/
     
     //console.log(randomQuestions);
-    showQestion();
+   
     //if (randomQuestions.length === questionsArr.length){
         //allDone();
       //}
-  
+      showQestion();
 }
 
 var questionsArr = [
@@ -149,7 +141,7 @@ var questionsArr = [
         question: 'what is 9 * 9?',
         answers: [
             {text: '81', correct: true},
-            {text: '100', correct: false},
+            {text: '45', correct: false},
             {text: '49', correct: false},
             {text: '64', correct: false}
         ]
@@ -158,7 +150,7 @@ var questionsArr = [
     {
         question: 'what is 10 * 9?',
         answers: [
-            {text: '900', correct: false},
+            {text: '94', correct: false},
             {text: '90', correct: true},
             {text: '49', correct: false},
             {text: '64', correct: false}
@@ -169,7 +161,7 @@ var questionsArr = [
         question: 'what is 6 * 5?',
         answers: [
             {text: '81', correct: false },
-            {text: '100', correct: false},
+            {text: '10', correct: false},
             {text: '49', correct: false},
             {text: '30', correct: true}
         ]
