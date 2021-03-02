@@ -8,8 +8,7 @@ var startButton = document.querySelector("#startBtn");
 var countdown = document.querySelector("#countdown");
 var timer;
 var timerCount;
-var index = 0;
-var currentQuestionIndex;
+var randomIndexArray = [];
 var randomQuestions;
 var qC = document.querySelector("#questions-container");
 var messg = document.querySelector("#messg")
@@ -40,6 +39,7 @@ function startQuiz(){
 // this function to set the  questions
 function showQestion(){
     questionEl.innerHTML = randomQuestions.question;
+    currentQuestionIndex = 0;
     answerBtnEl.innerHTML = "";
     for (var i = 0; i < randomQuestions.answers.length; i++) {
         console.log(randomQuestions.answers[i].text);
@@ -65,7 +65,7 @@ function showQestion(){
                 allDone();
               }
             //alert('Wrong');
-            messg.innerHTML = 'Wrong!';
+            messg.innerHTML = 'Wrong';
             setNextQuesion()
         }
         
@@ -76,16 +76,54 @@ function showQestion(){
 
 
     }
-    
+  
 }
 function setNextQuesion() {
-   // messg.innerHTML = "";
-    randomQuestions = questionsArr[Math.floor(Math.random() * questionsArr.length)];
-    console.log(randomQuestions);
-    showQestion();
-    if(randomQuestions === 0){
-        allDone();
+
+    for (let i = 0, temp = questionsArr; i < questionsArr.length; i++){
+        let rand = Math.floor(Math.random() * temp.length);
+        console.log(temp[rand]);
+        temp.splice(rand,1);
     }
+
+
+
+    /*var randomIndex = Math.floor(Math.random() * questionsArr.length);
+    if (randomIndexArray.includes(randomIndex)){
+       randomIndex = Math.floor(Math.random() * questionsArr.length);
+    }else{
+    randomIndex.push(randomIndexArray);
+  }*/
+
+   /* function setNextQuesion(randomQuestions) {
+        for (var i = randomQuestions - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = randomQuestions[i];
+            array[i] = randomQuestions[j];
+            array[j] = temp;
+        }
+    */
+    //randomQuestions = questionsArr[];
+    //randomQuestions.shift();
+    /*for(currentQuestionIndex = 0; currentQuestionIndex != randomQuestions; currentQuestionIndex ++){
+
+    randomQuestions.splice(currentQuestionIndex, 1);
+    currentQuestionIndex--;  //re-adjust the counter.
+    console.log(currentQuestionIndex);
+  }*/
+
+   /* while( questionsArr.length ) {
+        randomQuestions = questionsArr[Math.floor(Math.random() * questionsArr.length)];
+        console.log( questionsArr[randomQuestions] ); // Log the item
+        randomQuestions.splice( questionsArr, 1 ); // Remove the item from the array
+    }*/
+    
+    //console.log(randomQuestions);
+    showQestion();
+    //if (randomQuestions.length === questionsArr.length){
+        //allDone();
+      //}
+  
 }
 
 var questionsArr = [
@@ -120,25 +158,25 @@ var questionsArr = [
     {
         question: 'what is 10 * 9?',
         answers: [
-            {text: '81', correct: true},
-            {text: '100', correct: false},
+            {text: '900', correct: false},
+            {text: '90', correct: true},
             {text: '49', correct: false},
             {text: '64', correct: false}
         ]
     }
     ,
     {
-        question: 'what is 9 * 55?',
+        question: 'what is 6 * 5?',
         answers: [
-            {text: '81', correct: true},
+            {text: '81', correct: false },
             {text: '100', correct: false},
             {text: '49', correct: false},
-            {text: '64', correct: false}
+            {text: '30', correct: true}
         ]
     }
     
 ]
-// The setTimer function starts and stops the timer and triggers winGame() and loseGame()
+// The setTimer function starts and stops the timer
 function startTimer() {
     // Sets timer
     timer = setInterval(function() {
@@ -156,34 +194,20 @@ function startTimer() {
     document.querySelector("#submit").style.display = "block";
     document.querySelector("#questions-container").style.display = "none";
     countdown.textContent = 0;
-    //var score = JSON.parse(localStorage.getItem("score"));
     localStorage.getItem("score");
     highScore.textContent = score;
 
-    if (inputInitial){
-    localStorage.setItem("initial",initial);
-    }
-    //storeInitial()
   }
-  //this function save the inital in the localstorage
-  //function storeInitial() {
-   
-    //event.preventDefault();
-   // localStorage.setItem("initial", JSON.stringify(initial));
-     /*var scoreAndInitial ={
-        score : score.value,
-        initial : inputInitial.value.trim()
-    }
-    localStorage.setItem("scoreAndInitial", JSON.stringify(scoreAndInitial));*/
-  //}
   //Submition function for Initial
   submitBtn.addEventListener("click", function(event){
     event.preventDefault();
     console.log(event)
     document.querySelector("#highscores").style.display = "block";
     document.querySelector("#submit").style.display = "none";
-    var sI = localStorage.getItem("initial");
-    initialScore.textContent = sI;
+    initial = inputInitial.value
+    localStorage.setItem("initial",initial);
+     sI = localStorage.getItem("initial");
+    initialScore.textContent = sI + " - " + score;
     });
 
  //Go back button
