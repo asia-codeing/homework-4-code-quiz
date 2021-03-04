@@ -8,7 +8,6 @@ var startButton = document.querySelector("#startBtn");
 var countdown = document.querySelector("#countdown");
 var timer;
 var timerCount;
-var randomIndexArray = [];
 var randomQuestions;
 var qC = document.querySelector("#questions-container");
 var messg = document.querySelector("#messg")
@@ -36,15 +35,16 @@ function startQuiz(){
     randomQuestions = questionsArr[Math.floor(Math.random() * questionsArr.length)];
     timerCount = 30;
     startTimer()
-    showQestion()
-    //setNextQuesion();  
+    setNextQuesion();  
+    //showQestion()
 }
-// this function to set the  questions
+
+//Show questions and answers function
 function showQestion(){
     questionEl.innerHTML = randomQuestions.question;
     answerBtnEl.innerHTML = "";
     for (var i = 0; i < randomQuestions.answers.length; i++) {
-       // console.log(randomQuestions.answers[i].text);
+        console.log(randomQuestions.answers[i].text);
         var button = document.createElement("button");
         button.setAttribute("style", " background-color:#9fedd7;color:#026670; padding: 20px;font-family: 'Courier New', Courier, monospace;font-weight: bold;font-size: 16;border-radius: 8px; border-color:#fef9c7; margin:20px;");
         button.textContent = randomQuestions.answers[i].text;
@@ -54,20 +54,21 @@ function showQestion(){
            console.log(this.value);
         if (this.value === 'true'){
             score ++;
-            //localStorage.setItem("score", JSON.stringify(score));
             localStorage.setItem("score", score);
             //alert('Correct!');
             messg.innerHTML = 'Correct!';
-           // console.log(messg.innerHTML);
-            setNextQuesion()
-        }else{
+            console.log(messg.innerHTML);
+            setNextQuesion();
+            
+        }
+        else{
             timerCount = timerCount - 5;
             if (timerCount <= 0) {
                 stopTimer()
                 allDone();
               }
             //alert('Wrong');
-            messg.innerHTML = 'Wrong';
+            messg.innerHTML = 'Wrong!';
             setNextQuesion()
         }
         
@@ -81,21 +82,20 @@ function showQestion(){
 
 // use questionArr's length as an index, when we delete the question, the index also goes down
 // when index == 0 ----> reset this game/end the game
-
 function setNextQuesion() {
-   var index = Math.floor(Math.random() * questionsArr.length)
+   var index = Math.floor(Math.random() * questionsArr.length);
    randomQuestions = questionsArr[index];
    questionsArr.splice(index,1);
    console.log(questionsArr);
-     
+   console.log(questionsArr.length);
       if (questionsArr.length === 0){
-
         stopTimer();
         allDone();
       }
  showQestion();  
 }
 
+//Questions array
 var questionsArr = [
     {
         question: 'what is 5 + 5?',
@@ -143,40 +143,67 @@ var questionsArr = [
             {text: '49', correct: false},
             {text: '30', correct: true}
         ]
+    },
+    {
+        question: 'what is 2 * 20?',
+        answers: [
+            {text: '11', correct: false },
+            {text: '10', correct: false},
+            {text: '89', correct: false},
+            {text: '40', correct: true}
+        ]
+    },
+    {
+        question: 'what is 8 * 5?',
+        answers: [
+            {text: '86', correct: false },
+            {text: '30', correct: false},
+            {text: '69', correct: false},
+            {text: '40', correct: true}
+        ]
+    },
+    {
+        question: 'what is 7 * 7?',
+        answers: [
+            {text: '71', correct: false},
+            {text: '65', correct: false},
+            {text: '49', correct: true},
+            {text: '64', correct: false}
+        ]
     }
     
 ]
-// The setTimer function starts and stops the timer
+
+// The setTimer function 
 function startTimer() {
-    // Sets timer
     timer = setInterval(function() {
       timerCount--;
       countdown.textContent = timerCount;
       if (timerCount <= 0) {
-        // Clears interval
         stopTimer();
         console.log("clear the time")
-     //   clearInterval(timer);
         allDone();
       }
     }, 1000);
   }
+
+  //This function for stoping the timer
   function stopTimer(){
     clearInterval(timer);
   }
 
+ //All done 
  function allDone(){
     document.querySelector("#submit").style.display = "block";
     document.querySelector("#questions-container").style.display = "none";
     stopTimer();
     localStorage.getItem("score");
     highScore.textContent = score;
-
   }
+
   //Submition function for Initial
   submitBtn.addEventListener("click", function(event){
     event.preventDefault();
-   // console.log(event)
     document.querySelector("#highscores").style.display = "block";
     document.querySelector("#submit").style.display = "none";
     document.querySelector("#score").style.display = "none";
@@ -187,7 +214,7 @@ function startTimer() {
     initialScore.textContent = sI + " - " + score;
     });
 
- //Go back button
+ //Start over function
  function startOver(){
     document.querySelector("#questions-container").style.display = "none";
     document.querySelector("#submit").style.display = "none";
@@ -196,11 +223,10 @@ function startTimer() {
     document.querySelector("#time").style.display = "block";
     document.querySelector(".startingPage").style.display = "block";
     countdown.textContent = 0;
-    score = 0;
     startButton.addEventListener('click', startQuiz);
+}
     
-    
- }
+ //Go back button   
  goBack.addEventListener("click", startOver);
     
      
@@ -209,14 +235,14 @@ function startTimer() {
  clear.addEventListener("click", function() {
      initialScore.textContent = '';
  })
- var view = document.querySelector("#view");
 
+ //View high scores
+ var view = document.querySelector("#view");
  view.addEventListener("click",function(){
     document.querySelector("#questions-container").style.display = "none";
     document.querySelector("#submit").style.display = "none";
     document.querySelector(".startingPage").style.display = "none";
     document.querySelector("#highscores").style.display = "block";
-   
     localStorage.getItem("score");
     initialScore.textContent = score;
 

@@ -3,7 +3,11 @@ Code Quiz Assignment
 
 * I need my first page to be visible and the other pages shuold be hidden so to do that I used (document.querySelector("").style.display = "none";) for hidding. 
 * To make the pages visible I used (document.querySelector("").style.display = "block";).
-* When I click the start button a timer starts and I am presented with a questions
+* When I click the start button a timer starts and I am presented with a questions.
+* When I answer a question, I am presented with another question.
+* When I answer a question incorrectly, the time is subtracted from the clock and when it reach zero will stop geting new qustions and the game is over.
+* Afer the game geting over my scor will present, and I need to entr my inital and then I need to submit it to the local storag.
+* At the last page my initial and score will present to me.
 
 
 # Screenshot to deployed application:
@@ -17,19 +21,3 @@ Code Quiz Assignment
 # Link to deployed application:
 https://asia-codeing.github.io/homework-4-code-quiz/
 
-
-## Acceptance Criteria
-
-```
-GIVEN I am taking a code quiz
-1-WHEN I click the start button
-THEN a timer starts and I am presented with a question------done
-2-WHEN I answer a question
-THEN I am presented with another question
-3-WHEN I answer a question incorrectly
-THEN time is subtracted from the clock----------------------done
-4-WHEN all questions are answered or the timer reaches 0
-THEN the game is over
-5-WHEN the game is over
-THEN I can save my initials and my score--------------------done
-```
