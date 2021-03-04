@@ -23,6 +23,7 @@ var submitBtn = document.querySelector(".btn");
 var goBack = document.querySelector(".goback-btn");
 var initialScore = document.querySelector("#score-output");
 var clear = document.querySelector(".clear-btn");
+var question;
 
 //addEventListener to the start button and put the startQuiz function in side
 startButton.addEventListener('click', startQuiz);
@@ -30,11 +31,13 @@ function startQuiz(){
    // console.log("Start");
     document.querySelector(".startingPage").style.display = "none";
     document.querySelector("#questions-container").style.display = "block";
+    document.querySelector("#score").style.display = "block";
+    document.querySelector("#time").style.display = "block";
     randomQuestions = questionsArr[Math.floor(Math.random() * questionsArr.length)];
     timerCount = 30;
     startTimer()
-    setNextQuesion();
-    
+    showQestion()
+    //setNextQuesion();  
 }
 // this function to set the  questions
 function showQestion(){
@@ -48,7 +51,7 @@ function showQestion(){
         button.setAttribute("value",randomQuestions.answers[i].correct);
         button.setAttribute("class","answerBtn");
         button.onclick =  function(){
-           // console.log(this.value);
+           console.log(this.value);
         if (this.value === 'true'){
             score ++;
             //localStorage.setItem("score", JSON.stringify(score));
@@ -56,12 +59,11 @@ function showQestion(){
             //alert('Correct!');
             messg.innerHTML = 'Correct!';
            // console.log(messg.innerHTML);
-            
             setNextQuesion()
         }else{
             timerCount = timerCount - 5;
             if (timerCount <= 0) {
-                clearInterval(timerCount);
+                stopTimer()
                 allDone();
               }
             //alert('Wrong');
@@ -73,8 +75,6 @@ function showQestion(){
         answerBtnEl.appendChild(button);
         //to get message for correct or wrong answer
         qC.append(messg);
-       // randomIndexArray.push(randomQuestions);
-
     }
   
 }
@@ -89,11 +89,11 @@ function setNextQuesion() {
    console.log(questionsArr);
      
       if (questionsArr.length === 0){
-        clearInterval(startTimer);
+
+        stopTimer();
         allDone();
       }
-    showQestion();
-    // startTimer()
+ showQestion();  
 }
 
 var questionsArr = [
@@ -154,20 +154,21 @@ function startTimer() {
       countdown.textContent = timerCount;
       if (timerCount <= 0) {
         // Clears interval
+        stopTimer();
         console.log("clear the time")
-        clearInterval(timer);
+     //   clearInterval(timer);
         allDone();
       }
     }, 1000);
+  }
+  function stopTimer(){
+    clearInterval(timer);
   }
 
  function allDone(){
     document.querySelector("#submit").style.display = "block";
     document.querySelector("#questions-container").style.display = "none";
-    // countdown.style.display = 'none';
-    // console.log(clearInterval());
-    // console.log(startTimer)
-    clearInterval(startTimer);
+    stopTimer();
     localStorage.getItem("score");
     highScore.textContent = score;
 
@@ -178,6 +179,8 @@ function startTimer() {
    // console.log(event)
     document.querySelector("#highscores").style.display = "block";
     document.querySelector("#submit").style.display = "none";
+    document.querySelector("#score").style.display = "none";
+    document.querySelector("#time").style.display = "none";
     initial = inputInitial.value
     localStorage.setItem("initial",initial);
      sI = localStorage.getItem("initial");
@@ -185,12 +188,36 @@ function startTimer() {
     });
 
  //Go back button
- goBack.addEventListener("click", function(){
-     document.querySelector("#highscores").style.display = "none";
-     document.querySelector(".startingPage").style.display = "block";
+ function startOver(){
+    document.querySelector("#questions-container").style.display = "none";
+    document.querySelector("#submit").style.display = "none";
+    document.querySelector("#highscores").style.display = "none";
+    document.querySelector("#score").style.display = "block";
+    document.querySelector("#time").style.display = "block";
+    document.querySelector(".startingPage").style.display = "block";
+    countdown.textContent = 0;
+    score = 0;
+    startButton.addEventListener('click', startQuiz);
+    
+    
+ }
+ goBack.addEventListener("click", startOver);
+    
+     
 
- });
  //Clear button
  clear.addEventListener("click", function() {
      initialScore.textContent = '';
+ })
+ var view = document.querySelector("#view");
+
+ view.addEventListener("click",function(){
+    document.querySelector("#questions-container").style.display = "none";
+    document.querySelector("#submit").style.display = "none";
+    document.querySelector(".startingPage").style.display = "none";
+    document.querySelector("#highscores").style.display = "block";
+   
+    localStorage.getItem("score");
+    initialScore.textContent = score;
+
  })
