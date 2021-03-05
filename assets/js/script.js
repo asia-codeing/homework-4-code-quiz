@@ -27,6 +27,85 @@ var question;
 //addEventListener to the start button and put the startQuiz function in side
 startButton.addEventListener('click', startQuiz);
 function startQuiz(){
+
+    questionsArr = [
+        {
+            question: 'what is 5 + 5?',
+            answers: [
+                {text: '10', correct: true},
+                {text: '20', correct: false},
+                {text: '33', correct: false},
+                {text: '13', correct: false}
+            ]
+        },
+        {
+            question: 'what is 100 - 20?',
+            answers: [
+                {text: '90', correct: false},
+                {text: '55', correct: false},
+                {text: '80', correct: true},
+                {text: '63', correct: false}
+            ]
+        },
+        {
+            question: 'what is 9 * 9?',
+            answers: [
+                {text: '81', correct: true},
+                {text: '45', correct: false},
+                {text: '49', correct: false},
+                {text: '64', correct: false}
+            ]
+        }
+        ,
+        {
+            question: 'what is 10 * 9?',
+            answers: [
+                {text: '94', correct: false},
+                {text: '90', correct: true},
+                {text: '49', correct: false},
+                {text: '64', correct: false}
+            ]
+        }
+        ,
+        {
+            question: 'what is 6 * 5?',
+            answers: [
+                {text: '81', correct: false },
+                {text: '10', correct: false},
+                {text: '49', correct: false},
+                {text: '30', correct: true}
+            ]
+        },
+        {
+            question: 'what is 2 * 20?',
+            answers: [
+                {text: '11', correct: false },
+                {text: '10', correct: false},
+                {text: '89', correct: false},
+                {text: '40', correct: true}
+            ]
+        },
+        {
+            question: 'what is 8 * 5?',
+            answers: [
+                {text: '86', correct: false },
+                {text: '30', correct: false},
+                {text: '69', correct: false},
+                {text: '40', correct: true}
+            ]
+        },
+        {
+            question: 'what is 7 * 7?',
+            answers: [
+                {text: '71', correct: false},
+                {text: '65', correct: false},
+                {text: '49', correct: true},
+                {text: '64', correct: false}
+            ]
+        }
+        
+    ]
+
    // console.log("Start");
     document.querySelector(".startingPage").style.display = "none";
     document.querySelector("#questions-container").style.display = "block";
@@ -85,14 +164,17 @@ function showQestion(){
 function setNextQuesion() {
    var index = Math.floor(Math.random() * questionsArr.length);
    randomQuestions = questionsArr[index];
+   showQestion()
+   console.log(questionsArr);
    questionsArr.splice(index,1);
    console.log(questionsArr);
    console.log(questionsArr.length);
       if (questionsArr.length === 0){
+          console.log(questionsArr);
         stopTimer();
         allDone();
       }
- showQestion();  
+
 }
 
 //Questions array
@@ -223,11 +305,11 @@ function startTimer() {
     document.querySelector("#time").style.display = "block";
     document.querySelector(".startingPage").style.display = "block";
     countdown.textContent = 0;
-    startButton.addEventListener('click', startQuiz);
 }
-    
- //Go back button   
- goBack.addEventListener("click", startOver);
+
+//Go back button   
+startButton.addEventListener('click', startQuiz);
+goBack.addEventListener("click", startOver);
     
      
 
