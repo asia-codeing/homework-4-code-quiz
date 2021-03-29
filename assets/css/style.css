@@ -24,8 +24,6 @@ header{
     font-family: 'Courier New', Courier, monospace;
     font-size: 20px;
     font-weight: bold;
- 
-   
 }
 #score{
    float: left;
@@ -34,6 +32,10 @@ header{
 #time{
    float: right;
    padding: 10px;
+}
+#view{
+    color: var(--color4);
+
 }
 .container{
     clear: both;
@@ -60,7 +62,7 @@ header{
     color:  var(--color2);
 }
 #questions-container{
-    padding:150px 0 80px;
+    padding: 50px 0 80px;
 
 }
 #question{
