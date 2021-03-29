@@ -25,18 +25,21 @@ header{
     font-size: 20px;
     font-weight: bold;
 }
+
 #score{
    float: left;
    padding: 10px;
 }
+
 #time{
    float: right;
    padding: 10px;
 }
-#view{
-    color: var(--color4);
 
+#view{
+   color: var(--color4);
 }
+
 .container{
     clear: both;
     margin:0 auto;
