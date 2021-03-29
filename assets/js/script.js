@@ -125,7 +125,7 @@ function showQestion(){
     for (var i = 0; i < randomQuestions.answers.length; i++) {
         console.log(randomQuestions.answers[i].text);
         var button = document.createElement("button");
-        button.setAttribute("style", " background-color:#9fedd7;color:#026670; padding: 20px;font-family: 'Courier New', Courier, monospace;font-weight: bold;font-size: 16;border-radius: 8px; border-color:#fef9c7; margin:20px;");
+        button.setAttribute("style", " background-color:#b6ecfa;color:#306da7; padding: 20px;font-family: 'Courier New', Courier, monospace;font-weight: bold;font-size: 16;border-radius: 8px; border-color:#fef9c7; margin:20px;");
         button.textContent = randomQuestions.answers[i].text;
         button.setAttribute("value",randomQuestions.answers[i].correct);
         button.setAttribute("class","answerBtn");
