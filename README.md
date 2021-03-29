@@ -26,7 +26,7 @@ Quiz Challenge includes multiple-choice questions. This app will run in the brow
 * CSS
 * JavaScript
 
-# Screenshot to deployed application:
+## Screenshot to deployed application
 ![Quiz-Challenge](./assets/images/quiz-c.gif)
 
 ## License
