@@ -65,7 +65,7 @@ header{
     color:  var(--color2);
 }
 #questions-container{
-    padding: 50px 0 80px;
+    padding: 50px 0 50px;
 
 }
 #question{

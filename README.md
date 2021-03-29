@@ -26,14 +26,8 @@ Quiz Challenge includes multiple-choice questions. This app will run in the brow
 * CSS
 * JavaScript
 
-
 # Screenshot to deployed application:
-![Starting-page](./assets.images.firstp.png)
-![Questions](./assets.images.questions.png)
-![Submiting](./assets.images.submit.png)
-![Highscores-Goback](./assets.highscore.png)
-
-
+![Quiz-Challenge](./assets/images/quiz-c.gif)
 
 ## License
 [MIT](https://choosealicense.com/licenses/mit/)
@@ -42,4 +36,3 @@ Quiz Challenge includes multiple-choice questions. This app will run in the brow
 * [Email](mailto:asia.alius@gmail.com)
 * [LinkedIn](https://www.linkedin.com/in/asia-alnahi-1562aa183/)
 * [Portfolio](https://asia-codeing.github.io/my-Portfolio/#home)
-
