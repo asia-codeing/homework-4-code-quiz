@@ -35,4 +35,4 @@ Quiz Challenge includes multiple-choice questions. This app will run in the brow
 ## Contact info
 * [Email](mailto:asia.alius@gmail.com)
 * [LinkedIn](https://www.linkedin.com/in/asia-alnahi-1562aa183/)
-* [Portfolio](https://asia-codeing.github.io/my-Portfolio/#home)
+* [Portfolio](https://asia-codeing.github.io/my-Portfolio/)
