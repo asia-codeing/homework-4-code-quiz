@@ -39,7 +39,7 @@ header{
     clear: both;
     margin:0 auto;
     text-align: center;
-    padding: 40px;
+    padding: 200px 0 80px;
     line-height: 30px;
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
@@ -59,11 +59,18 @@ header{
 #startBtn:hover{
     color:  var(--color2);
 }
+#questions-container{
+    padding: 200px 0 80px;
+
+}
 #question{
     
     font-family: 'Courier New', Courier, monospace;
     font-weight: bold;
     font-size: 22px ;
+}
+#answer-buttons{
+    padding: 10px;
 }
 
 
