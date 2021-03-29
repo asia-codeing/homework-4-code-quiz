@@ -60,7 +60,7 @@ header{
     color:  var(--color2);
 }
 #questions-container{
-    padding: 200px 0 80px;
+    padding:150px 0 80px;
 
 }
 #question{
@@ -72,8 +72,10 @@ header{
 #answer-buttons{
     padding: 10px;
 }
+#answer-buttons:hover{
+    color:  var(--color2);
 
-
+}
 .btn{
     background-color: var(--color2);
     border-color: var(--color2);
